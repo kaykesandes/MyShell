@@ -1,0 +1,8 @@
+{
+    "C_Cpp.default.compilerPath": "/usr/bin/gcc",
+    "C_Cpp.errorSquiggles": "enabled",
+    "files.associations": {
+        "stdio.h": "c",
+        "myshell.h": "c"
+    }
+}
