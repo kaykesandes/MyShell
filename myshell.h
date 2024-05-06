@@ -6,9 +6,9 @@
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
+#include <sys/stat.h>
 #include <sys/types.h>
 #include <sys/wait.h>
-
 
 
 #define RL_BUFSIZE 1024
@@ -28,11 +28,13 @@ int     ft_execute(char **args);
 int lsh_cd(char **args);
 int lsh_help(char **args);
 int lsh_exit(char **args);
-void lsh_mkdir(char **args);
-void lsh_clear();
+int lsh_clear(char **args);
+int lsh_mkdir(char **args);
 
 
 extern const char *builtin_str[];
 extern int (*builtin_func[])(char **);
+extern char *my_directory;
+
 
 #endif
