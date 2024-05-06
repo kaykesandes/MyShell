@@ -58,7 +58,7 @@ int lsh_cd(char **args)
 {
   if (args[1] == NULL)
   {
-    fprintf(stderr, "minishell: expected argument to \"cd\"\n");
+    fprintf(stderr, "minishell: argumento faltando para\"cd\"\n");
     return (1);
   }
 
