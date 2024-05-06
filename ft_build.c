@@ -12,14 +12,16 @@ const char *builtin_str[] = {
     "help",
     "exit",
     "clear",
-    "mkdir"};
+    "mkdir"
+};
 
 int (*builtin_func[])(char **) = {
     &lsh_cd,
     &lsh_help,
     &lsh_exit,
     &lsh_clear,
-    &lsh_mkdir};
+    &lsh_mkdir
+};
 
 int lsh_num_builtins()
 {
