@@ -4,24 +4,62 @@ int lsh_cd(char **args);
 int lsh_help(char **args);
 int lsh_exit(char **args);
 int lsh_clear(char **args);
+int lsh_pwd(char  **args);
 
 char  *my_directory = NULL;
+char wd[1000];
 
 const char *builtin_str[] = {
     "cd",
     "help",
     "exit",
     "clear",
-    "mkdir"
-};
+    "mkdir",
+    "pwd",
+    };
 
 int (*builtin_func[])(char **) = {
     &lsh_cd,
     &lsh_help,
     &lsh_exit,
     &lsh_clear,
-    &lsh_mkdir
-};
+    &lsh_mkdir,
+    &lsh_pwd
+    };
+
+int lsh_pwd(char **args)
+{
+  (void)args;
+  if (args[1] != NULL)
+  {
+    fprintf(stderr, "minishell: comando mkdir não recebe argumento\n");
+    return 1;
+  }
+  printf("%s\n", getcwd(wd, sizeof(wd)));
+  return (1);
+}
+
+int lsh_cd(char **args)
+{
+  if (args[1] == NULL)
+  {
+    fprintf(stderr, "minishell: argumento faltando para\"cd\"\n");
+    return (1);
+  }
+
+  char *new_dir = args[1];
+
+  if (chdir(new_dir) != 0)
+  {
+    perror("cd");
+  }
+  else
+  {
+    free(my_directory);
+    my_directory = strdup(new_dir);
+  }
+  return 1;
+}
 
 int lsh_num_builtins()
 {
@@ -54,28 +92,6 @@ int lsh_clear(char **args)
   [H mover o cursor para canto superior esquerdo tela
   */
   return (1);
-}
-
-int lsh_cd(char **args)
-{
-  if (args[1] == NULL)
-  {
-    fprintf(stderr, "minishell: argumento faltando para\"cd\"\n");
-    return (1);
-  }
-
-  char *new_dir = args[1];
-
-  if (chdir(new_dir) != 0)
-  {
-    perror("cd");
-  }
-  else
-  {
-    free(my_directory);
-    my_directory = strdup(new_dir);
-  }
-  return 1;
 }
 
 int lsh_help(char **args)
